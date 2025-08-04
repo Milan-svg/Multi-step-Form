@@ -49,17 +49,19 @@ function Properties({ onNext }) {
     if (dosageFields.length < 1) {
       dosageAppend("");
     }
-  }, [dosageFields.length, dosageAppend]);
+  }, [dosageFields.length]);
+
   useEffect(() => {
     if (usageFields.length < 1) {
       usageAppend("");
     }
-  }, [usageFields.length, usageAppend]);
+  }, [usageFields.length]);
+
   useEffect(() => {
     if (durationFields.length < 1) {
       durationAppend("");
     }
-  }, [durationFields.length, durationAppend]);
+  }, [durationFields.length]);
 
   const onSubmit = (data) => {
     dispatch(replaceField({ field: "dosage", value: data.dosage }));
@@ -67,12 +69,12 @@ function Properties({ onNext }) {
     dispatch(replaceField({ field: "duration", value: data.duration }));
 
     reset();
-    //onNext();
+    onNext();
   };
   //console.log("AFTER: ", existingForm.usage);
   return (
     <div className="card bg-base-100 w-full max-w-md p-6">
-      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <ArrayFieldInput
           register={register}
           name="Dosage"
@@ -129,8 +131,8 @@ function Properties({ onNext }) {
           arrayAppend={durationAppend}
           arrayRemove={durationRemove}
         />
-        <button className="btn btn-primary" type="submit" disabled={!isValid}>
-          Submit
+        <button className="btn btn-success" type="submit" disabled={!isValid}>
+          Next
         </button>
       </form>
     </div>

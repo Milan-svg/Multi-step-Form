@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import GeneralInfo from "./Step1_GeneralInfo";
-import Benefits from "./Step2_Benefits";
+import GeneralInfo from "./GeneralInfo";
+import Benefits from "./Benefits";
 import Properties from "./Properties";
 import FAQ from "./FAQ";
 import Overview from "./Overview";

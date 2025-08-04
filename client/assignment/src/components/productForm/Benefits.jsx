@@ -75,7 +75,7 @@ function Benefits({ onNext }) {
   // console.log("secondaryFields", secondaryFields);
   return (
     <div className="card bg-base-100 w-full max-w-md p-6">
-      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="space-y-2">
           <h1>Primary Benefits</h1>
 
@@ -146,8 +146,8 @@ function Benefits({ onNext }) {
           </button>
         </fieldset>
 
-        <button type="submit" className="m-3">
-          submit
+        <button type="submit" className="btn btn-success m-3">
+          Next
         </button>
       </form>
     </div>

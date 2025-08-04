@@ -15,7 +15,7 @@ const initialState = {
   duration: [""],
   faqs: [{ question: "", answer: "" }],
   additionalProductTitle: "",
-  relatedProducts: [],
+  additionalProducts: [""],
 };
 
 const productFormSlice = createSlice({

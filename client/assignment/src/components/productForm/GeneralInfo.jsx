@@ -155,7 +155,11 @@ function GeneralInfo({ onNext }) {
           </div>
         </div>
 
-        <button type="submit" className="btn mt-5" disabled={!isValid}>
+        <button
+          type="submit"
+          className="btn btn-success mt-5"
+          disabled={!isValid}
+        >
           Next
         </button>
       </form>
