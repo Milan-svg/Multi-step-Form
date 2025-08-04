@@ -14,6 +14,7 @@ const initialState = {
   allIngredients: [],
   duration: [""],
   faqs: [{ question: "", answer: "" }],
+
   relatedProducts: [],
 };
 
