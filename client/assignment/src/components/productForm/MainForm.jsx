@@ -1,37 +1,38 @@
 import React, { useState } from "react";
 import GeneralInfo from "./Step1_GeneralInfo";
 import Benefits from "./Step2_Benefits";
-import Properties from "./Step3_Properties";
-import FAQ from "./Step4_FAQ";
-import Overview from "./Step5_Overview";
+import Properties from "./Properties";
+import FAQ from "./FAQ";
+import Overview from "./Overview";
 function MainForm() {
   const [step, setStep] = useState(1);
 
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <GeneralInfo />;
+        return <GeneralInfo onNext={handleNext} />;
       case 2:
-        return <Benefits />;
+        return <Benefits onNext={handleNext} />;
       case 3:
-        return <Properties />;
+        return <Properties onNext={handleNext} />;
       case 4:
-        return <FAQ />;
+        return <FAQ onNext={handleNext} />;
       case 5:
-        return <Overview />;
+        return <Overview onNext={handleNext} />;
       default:
-        return <GeneralInfo />;
+        return <GeneralInfo onNext={handleNext} />;
     }
   };
   const handleNext = () => setStep((prev) => prev + 1);
   const handleBack = () => setStep((prev) => prev - 1);
   return (
-    <div className="min-h-screen w-full flex justify-center items-center">
+    <div className="min-h-screen w-full flex flex-col justify-center items-center">
       {renderStep()}
-      <div>
-        {step > 1 && <button onClick={handleBack}>Back</button>}
-        {step < 5 && <button onClick={handleNext}>Next</button>}
-      </div>
+      {step > 1 && (
+        <button className="btn" onClick={handleBack}>
+          Back
+        </button>
+      )}
     </div>
   );
 }
