@@ -48,13 +48,13 @@ function Benefits({ onNext }) {
     if (primaryFields.length === 0) {
       primaryAppend("");
     }
-  }, [primaryFields.length, primaryAppend]);
+  }, [primaryFields.length]);
 
   useEffect(() => {
     if (secondaryFields.length === 0) {
       secondaryAppend("");
     }
-  }, [secondaryFields.length, secondaryAppend]);
+  }, [secondaryFields.length]);
 
   const onSubmit = (data) => {
     //console.log("primary benefits: ", data.primaryBenefits);

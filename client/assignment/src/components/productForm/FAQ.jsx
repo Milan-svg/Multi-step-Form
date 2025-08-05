@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { ArrayFieldInput } from "../arrayFieldInput";
 import { useDispatch, useSelector } from "react-redux";
 import { useFieldArray, useForm } from "react-hook-form";
 import { replaceField } from "./productFormSlice";
@@ -57,13 +56,7 @@ function FAQ({ onNext }) {
       })
     );
     onNext();
-    // console.log("faqs: ", data.faqs);
-    // console.log("additionalProductTitle: ", data.additionalProductTitle);
-    // console.log("additionalProducts: ", data.additionalProducts);
-    reset();
   };
-  // console.log(existingForm.faqs);
-  // console.log(existingForm.additionalProducts);
 
   return (
     <div className="bg-base-100 card w-full max-w-md p-6">

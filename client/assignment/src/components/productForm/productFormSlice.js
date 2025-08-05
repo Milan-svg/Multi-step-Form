@@ -10,8 +10,7 @@ const initialState = {
   secondaryBenefits: [""],
   dosage: [""],
   usage: [{ field1: "", field2: "" }],
-  primaryIngredients: [],
-  allIngredients: [],
+  primaryIngredients: [{ name: "", image: "" }],
   duration: [""],
   faqs: [{ question: "", answer: "" }],
   additionalProductTitle: "",
@@ -38,9 +37,6 @@ const productFormSlice = createSlice({
     },
     updatePricing: (state, action) => {
       state.pricing[action.payload.index] = action.payload.value;
-    },
-    replacePricing: (state, action) => {
-      state.pricing = action.payload;
     },
     deletePricing: (state, action) => {
       const { field, index } = action.payload;

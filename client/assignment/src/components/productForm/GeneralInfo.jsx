@@ -1,14 +1,7 @@
 import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setField,
-  setImages,
-  replacePricing,
-  addPricing,
-  updatePricing,
-  deletePricing,
-} from "./productFormSlice";
+import { setField, setImages, replaceField } from "./productFormSlice";
 
 function GeneralInfo({ onNext }) {
   const dispatch = useDispatch();
@@ -38,17 +31,15 @@ function GeneralInfo({ onNext }) {
     e.target.value = "";
   };
   const onSubmit = (data) => {
-    // console.log("step 1 submitted", data.name, data.subtitle, data.pricing);
-    // // dispatch normal fields
-    // dispatch(setField({ field: "name", value: data.name }));
-    // dispatch(setField({ field: "subtitle", value: data.subtitle }));
-    // dispatch(setField({ field: "description", value: data.description }));
-    // //dispatch pricing array
-    // dispatch(replacePricing(data.pricing));
-    // // move to next step
+    // dispatch normal fields
+    dispatch(setField({ field: "name", value: data.name }));
+    dispatch(setField({ field: "subtitle", value: data.subtitle }));
+    dispatch(setField({ field: "description", value: data.description }));
+    //dispatch pricing array
+    dispatch(replaceField({ field: "pricing", value: data.pricing }));
+    // move to next step
     onNext();
   };
-
   return (
     <div className="card bg-base-100 p-6 flex flex-col max-w-md">
       <h1 className="card-title text-center">General Information</h1>
