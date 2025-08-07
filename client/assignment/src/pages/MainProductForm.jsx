@@ -75,9 +75,28 @@ function MainProductForm() {
       <Steps currentStep={step} />
       {renderStep()}
       {step > 1 && (
-        <button className="btn btn-primary mt-4" onClick={handleBack}>
-          Back
-        </button>
+        <div className="mt-4 flex gap-4">
+          <button
+            type="button"
+            className="btn btn-primary mt-4"
+            onClick={handleBack}
+          >
+            Back
+          </button>
+          <button
+            type="button"
+            className="btn btn-error mt-4"
+            onClick={() => {
+              if (confirm("Are you sure you want to clear the form?")) {
+                dispatch(resetForm());
+                dispatch(setStep(1));
+                toast.success("Form cleared!");
+              }
+            }}
+          >
+            Clear Form
+          </button>
+        </div>
       )}
     </div>
   );
