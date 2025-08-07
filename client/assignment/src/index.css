@@ -1,8 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@plugin "daisyui";
+@import "tailwindcss";
 
-body {
-  @apply bg-slate-400 text-white;
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, cupcake;
 }
+/* body {
+  @apply bg-base-200;
+} */
+
+/* bg-[#F9F9F9] */

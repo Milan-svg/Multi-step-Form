@@ -41,63 +41,82 @@ function GeneralInfo({ onNext }) {
     onNext();
   };
   return (
-    <div className="card bg-base-100 p-6 flex flex-col max-w-md">
-      <h1 className="card-title text-center">General Information</h1>
+    <div className="bg-base-200 p-8 rounded-xl shadow-2xl">
+      <h1 className="text-center mb-4 font-bold text-2xl">
+        General Information
+      </h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="Product name"
-          className="input"
-          {...register("name", { required: "Product name is required" })}
-        />
+        <label className="floating-label">
+          <span>Product Name</span>
+          <input
+            type="text"
+            placeholder="Product name"
+            className="input input-lg"
+            {...register("name", { required: "Product name is required" })}
+          />
+        </label>
+        <label className="floating-label">
+          <span>Subtitle</span>
+          <input
+            type="text"
+            className="input input-lg"
+            placeholder="Subtitle.."
+            {...register("subtitle", { required: "Subtitle is required" })}
+          />
+        </label>
 
-        <input
-          type="text"
-          className="input"
-          placeholder="Subtitle.."
-          {...register("subtitle", { required: "Subtitle is required" })}
-        />
-
-        <div className="space-y-4 flex flex-col">
-          <h1>Pricing Variants</h1>
+        <div className="space-y-4">
+          <h1 className="text-xl">Pricing Variants</h1>
           {fields.map((field, index) => (
-            <div className="flex space-x-4" key={field.id}>
-              <input
-                type="text"
-                className="input"
-                placeholder="Enter Weight"
-                {...register(`pricing.${index}.weight`, {
-                  required: "Weight is required",
-                })}
-                defaultValue={field.weight}
-              />
-              <input
-                type="text"
-                className="input"
-                placeholder="Month"
-                {...register(`pricing.${index}.duration`, {
-                  required: "Duration is required",
-                })}
-                defaultValue={field.duration}
-              />
-              <input
-                type="text"
-                className="input"
-                placeholder="Jar"
-                {...register(`pricing.${index}.quantity`, {
-                  required: "Quantity is required",
-                })}
-                defaultValue={field.quantity}
-              />
-              <input
-                type="text"
-                className="input"
-                placeholder="Add Price"
-                {...register(`pricing.${index}.price`, {
-                  required: "Price is required",
-                })}
-                defaultValue={field.price}
-              />
+            <div className="flex items-end gap-10" key={field.id}>
+              <label className="floating-label">
+                <span>Enter Weight</span>
+                <input
+                  type="text"
+                  className="input input-lg"
+                  placeholder="Enter Weight"
+                  {...register(`pricing.${index}.weight`, {
+                    required: "Weight is required",
+                  })}
+                  defaultValue={field.weight}
+                />
+              </label>
+              <label className="floating-label">
+                <span>Month</span>
+                <input
+                  type="text"
+                  className="input input-lg"
+                  placeholder="Month"
+                  {...register(`pricing.${index}.duration`, {
+                    required: "Duration is required",
+                  })}
+                  defaultValue={field.duration}
+                />
+              </label>
+              <label className="floating-label">
+                <span>Jar</span>
+                <input
+                  type="text"
+                  className="input input-lg"
+                  placeholder="Jar"
+                  {...register(`pricing.${index}.quantity`, {
+                    required: "Quantity is required",
+                  })}
+                  defaultValue={field.quantity}
+                />
+              </label>
+              <label className="floating-label">
+                <span>Add Price</span>
+                <input
+                  type="text"
+                  className="input input-lg"
+                  placeholder="Add Price"
+                  {...register(`pricing.${index}.price`, {
+                    required: "Price is required",
+                  })}
+                  defaultValue={field.price}
+                />
+              </label>
               {fields.length > 1 && (
                 <button
                   className="btn"
@@ -107,26 +126,29 @@ function GeneralInfo({ onNext }) {
                   Remove
                 </button>
               )}
-              <button
-                className="btn"
-                onClick={() =>
-                  append({ weight: "", duration: "", quantity: "", price: "" })
-                }
-              >
-                Add variant
-              </button>
             </div>
           ))}
+          <button
+            type="button"
+            className="btn"
+            onClick={() =>
+              append({ weight: "", duration: "", quantity: "", price: "" })
+            }
+          >
+            Add variant
+          </button>
         </div>
 
-        <input
-          type="text"
-          className="input"
-          placeholder="Product Description"
-          {...register("description", {
-            required: "Description is required",
-          })}
-        />
+        <label className="floating-label">
+          <span>Product Description</span>
+          <textarea
+            className="textarea"
+            placeholder="Product Description"
+            {...register("description", {
+              required: "Description is required",
+            })}
+          />
+        </label>
         <div>
           <input
             type="file"
@@ -146,11 +168,7 @@ function GeneralInfo({ onNext }) {
           </div>
         </div>
 
-        <button
-          type="submit"
-          className="btn btn-success mt-5"
-          disabled={!isValid}
-        >
+        <button type="submit" className="btn btn-success" disabled={!isValid}>
           Next
         </button>
       </form>

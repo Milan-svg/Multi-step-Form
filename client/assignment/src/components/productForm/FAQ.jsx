@@ -59,28 +59,35 @@ function FAQ({ onNext }) {
   };
 
   return (
-    <div className="bg-base-100 card w-full max-w-md p-6">
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <fieldset className="space-y-2">
-          <h1>FAQ</h1>
+    <div className="bg-base-200 p-8 rounded-xl shadow-2xl">
+      <h1 className="text-center mb-4 font-bold text-2xl">FAQ</h1>
+      <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
+        <fieldset className="space-y-4">
+          <h1 className="text-xl font-semibold">FAQ</h1>
           {faqFields.map((field, index) => (
-            <div key={field.id} className="flex space-x-4 items-center">
-              <input
-                type="text"
-                className="input"
-                placeholder="Enter Question"
-                {...register(`faqs.${index}.question`, {
-                  required: "Field is Required",
-                })}
-              />
-              <input
-                type="text"
-                className="input"
-                placeholder="Enter Answer"
-                {...register(`faqs.${index}.answer`, {
-                  required: "Field is Required",
-                })}
-              />
+            <div key={field.id} className="flex items-end gap-10">
+              <label className="floating-label">
+                <span>Question</span>
+                <input
+                  type="text"
+                  className="input input-lg"
+                  placeholder="Enter Question"
+                  {...register(`faqs.${index}.question`, {
+                    required: "Field is Required",
+                  })}
+                />
+              </label>
+              <label className="floating-label">
+                <span>Answer</span>
+                <textarea
+                  type="text"
+                  className="input input-lg"
+                  placeholder="Enter Answer"
+                  {...register(`faqs.${index}.answer`, {
+                    required: "Field is Required",
+                  })}
+                />
+              </label>
               {faqFields.length > 1 && (
                 <button
                   type="button"
@@ -101,26 +108,31 @@ function FAQ({ onNext }) {
           </button>
         </fieldset>
         <fieldset className="space-y-4">
-          <h1 className="mb-4">Additional Product Display</h1>
-          <label>Select Title</label>
-          <input
-            type="text"
-            className="input"
-            placeholder="Enter Title"
-            {...register("additionalProductTitle", {
-              required: "Field is Required",
-            })}
-          />
+          <h1 className="text-xl font-semibold">Additional Product Display</h1>
+          <label className="floating-label">
+            <span>Select Title</span>
+            <input
+              type="text"
+              className="input input-lg"
+              placeholder="Enter Title"
+              {...register("additionalProductTitle", {
+                required: "Field is Required",
+              })}
+            />
+          </label>
           {additionalProductsFields.map((field, index) => (
             <div key={field.id} className="flex space-x-4 items-center">
-              <input
-                type="text"
-                className="input"
-                placeholder="Add a Product"
-                {...register(`additionalProducts.${index}`, {
-                  required: "Field is Required",
-                })}
-              />
+              <label className="floating-label">
+                <span>Add a Product</span>
+                <input
+                  type="text"
+                  className="input input-lg"
+                  placeholder="Add a Product"
+                  {...register(`additionalProducts.${index}`, {
+                    required: "Field is Required",
+                  })}
+                />
+              </label>
               {additionalProductsFields.length > 1 && (
                 <button
                   type="button"
@@ -132,11 +144,15 @@ function FAQ({ onNext }) {
               )}
             </div>
           ))}
-          <button type="button" onClick={() => additionalProductsAppend("")}>
+          <button
+            type="button"
+            className="btn"
+            onClick={() => additionalProductsAppend("")}
+          >
             Add Another Item
           </button>
         </fieldset>
-        <button className="btn btn-success" type="submit">
+        <button className="btn btn-success" type="submit" disabled={!isValid}>
           Next
         </button>
       </form>

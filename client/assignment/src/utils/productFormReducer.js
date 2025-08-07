@@ -59,10 +59,8 @@ const reducer = (state, action) => {
     case "UPDATE_ARRAY_ITEM":
       return {
         ...state,
-
       };
     case "DELETE_ARRAY_ITEM":
       return {};
   }
 };
-usage: [""],

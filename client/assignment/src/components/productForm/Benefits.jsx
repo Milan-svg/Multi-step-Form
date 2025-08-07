@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { replaceField } from "./productFormSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useFieldArray, useForm } from "react-hook-form";
+import { ArrayFieldInput } from "../arrayFieldInput";
 function Benefits({ onNext }) {
   const dispatch = useDispatch();
   const existingForm = useSelector((s) => s.productForm);
@@ -10,7 +11,7 @@ function Benefits({ onNext }) {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       primaryBenefits:
@@ -70,83 +71,31 @@ function Benefits({ onNext }) {
     onNext();
   };
 
-  console.log("existingForm.primaryBenefits", existingForm.primaryBenefits);
+  //console.log("existingForm.primaryBenefits", existingForm.primaryBenefits);
   // console.log("primaryFields", primaryFields);
   // console.log("secondaryFields", secondaryFields);
   return (
-    <div className="card bg-base-100 w-full max-w-md p-6">
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <fieldset className="space-y-2">
-          <h1>Primary Benefits</h1>
+    <div className="bg-base-200 p-8 rounded-xl shadow-2xl">
+      <h1 className="text-center mb-4 font-bold text-2xl">Benefits</h1>
+      <form className="flex flex-col gap-6" onSubmit={handleSubmit(onSubmit)}>
+        <ArrayFieldInput
+          register={register}
+          arrayField={primaryFields}
+          entryName="primaryBenefits"
+          name="Primary Benefits"
+          arrayAppend={primaryAppend}
+          arrayRemove={primaryRemove}
+        />
 
-          <div className="flex flex-col">
-            {primaryFields.map((field, index) => (
-              <div key={field.id} className="flex space-x-4  items-center">
-                <input
-                  type="text"
-                  className="input"
-                  placeholder="Primary Benefits"
-                  {...register(`primaryBenefits.${index}`, {
-                    required: "This field is required",
-                  })}
-                />
-                {primaryFields.length > 1 && (
-                  <button
-                    className="btn btn-error"
-                    type="button"
-                    onClick={() => primaryRemove(index)}
-                  >
-                    X
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
-          <button
-            className="btn btn-active"
-            type="button"
-            onClick={() => primaryAppend("")}
-          >
-            Add Another Benefit
-          </button>
-        </fieldset>
-
-        <fieldset className="space-y-2">
-          <h1>Secondary Benefits</h1>
-          <div className="flex flex-col">
-            {secondaryFields.map((field, index) => (
-              <div className="flex space-x-4 items-center" key={field.id}>
-                <input
-                  type="text"
-                  className="input"
-                  placeholder="Secondary Benefits"
-                  {...register(`secondaryBenefits.${index}`, {
-                    required: "This field is required",
-                  })}
-                />
-                {secondaryFields.length > 1 && (
-                  <button
-                    className="btn btn-error"
-                    type="button"
-                    onClick={() => secondaryRemove(index)}
-                  >
-                    X
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <button
-            type="button"
-            className="btn btn-active"
-            onClick={() => secondaryAppend("")}
-          >
-            Add Another Benefit
-          </button>
-        </fieldset>
-
-        <button type="submit" className="btn btn-success m-3">
+        <ArrayFieldInput
+          register={register}
+          arrayField={secondaryFields}
+          entryName="secondaryBenefits"
+          name="Secondary Benefits"
+          arrayAppend={secondaryAppend}
+          arrayRemove={secondaryRemove}
+        />
+        <button type="submit" className="btn btn-success" disabled={!isValid}>
           Next
         </button>
       </form>

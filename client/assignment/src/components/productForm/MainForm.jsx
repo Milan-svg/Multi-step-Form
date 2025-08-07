@@ -4,6 +4,31 @@ import Benefits from "./Benefits";
 import Properties from "./Properties";
 import FAQ from "./FAQ";
 import Overview from "./Overview";
+
+const Steps = ({ currentStep }) => {
+  const steps = [
+    "General Information",
+    "Benefits",
+    "Properties",
+    "FAQ",
+    "Overview",
+  ];
+  return (
+    <div className="mb-10">
+      <ul className="steps w-full">
+        {steps.map((label, index) => (
+          <li
+            key={label}
+            className={`step ${index + 1 <= currentStep ? "step-success" : ""}`}
+          >
+            {label}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 function MainForm() {
   const [step, setStep] = useState(1);
 
@@ -26,10 +51,11 @@ function MainForm() {
   const handleNext = () => setStep((prev) => prev + 1);
   const handleBack = () => setStep((prev) => prev - 1);
   return (
-    <div className="min-h-screen w-full flex flex-col justify-center items-center">
+    <div>
+      <Steps currentStep={step} />
       {renderStep()}
       {step > 1 && (
-        <button className="btn" onClick={handleBack}>
+        <button className="btn btn-primary mt-4" onClick={handleBack}>
           Back
         </button>
       )}

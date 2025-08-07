@@ -2,9 +2,10 @@ import React from "react";
 
 function NavBar() {
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-white shadow-sm">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">AMRUTAM</a>
+        <img src="/images/logo.png" alt="Amrutam Logo" className="h-10 w-10" />
+        <h1 className="text-2xl font-bold text-green-800">AMRUTAM</h1>
       </div>
       <div className="flex gap-2">
         <div className="dropdown dropdown-end">
@@ -22,7 +23,7 @@ function NavBar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-content rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
               <a className="justify-between">

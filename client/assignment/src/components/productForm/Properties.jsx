@@ -98,12 +98,13 @@ function Properties({ onNext }) {
     dispatch(replaceField({ field: "dosage", value: data.dosage }));
     dispatch(replaceField({ field: "usage", value: data.usage }));
     dispatch(replaceField({ field: "duration", value: data.duration }));
-    console.log("igredients: ", data.primaryIngredients);
+    //console.log("igredients: ", data.primaryIngredients);
     //reset();
-    //onNext();
+    onNext();
   };
   return (
-    <div className="card bg-base-100 w-full max-w-md p-6">
+    <div className="bg-base-200 p-8 rounded-xl shadow-2xl">
+      <h1 className="text-center mb-4 font-bold text-2xl">Properties</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <ArrayFieldInput
           register={register}
@@ -115,23 +116,31 @@ function Properties({ onNext }) {
         />
 
         <fieldset className="space-y-4">
-          <h1>Usage</h1>
+          <h1 className="text-xl font-semibold">Usage</h1>
           {usageFields.map((field, index) => (
-            <div key={field.id} className="flex space-x-4 items-center">
-              <input
-                type="text"
-                className="input"
-                {...register(`usage.${index}.field1`, {
-                  required: "Field is Required",
-                })}
-              />
-              <input
-                type="text"
-                className="input"
-                {...register(`usage.${index}.field2`, {
-                  required: "Field is Required",
-                })}
-              />
+            <div key={field.id} className="flex items-end gap-10">
+              <label className="floating-label">
+                <span>Enter Usage</span>
+                <input
+                  type="text"
+                  className="input"
+                  placeholder="Enter Usage"
+                  {...register(`usage.${index}.field1`, {
+                    required: "Field is Required",
+                  })}
+                />
+              </label>
+              <label className="floating-label">
+                <span>Enter Usage</span>
+                <input
+                  type="text"
+                  className="input"
+                  placeholder="Enter Usage"
+                  {...register(`usage.${index}.field2`, {
+                    required: "Field is Required",
+                  })}
+                />
+              </label>
               {usageFields.length > 1 && (
                 <button
                   className="btn btn-error"
@@ -144,6 +153,7 @@ function Properties({ onNext }) {
           ))}
           <button
             type="button"
+            className="btn"
             onClick={() => usageAppend({ field1: "", field2: "" })}
           >
             Add Another Item
@@ -151,16 +161,19 @@ function Properties({ onNext }) {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <h1>Primary Ingredients</h1>
+          <h1 className="text-xl font-semibold">Primary Ingredients</h1>
           {/* search bar */}
           <div className="dropdown w-full">
-            <input
-              type="text"
-              placeholder="Search Ingredient"
-              className="input"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+            <label className="floating-label">
+              <span>Search Ingredients</span>
+              <input
+                type="text"
+                placeholder="Search Ingredients"
+                className="input"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </label>
             {searchTerm && filteredIngredients.length > 0 && (
               <ul
                 tabIndex={0}
@@ -186,12 +199,12 @@ function Properties({ onNext }) {
             {primaryIngredientFields.map((field, index) => (
               <div
                 key={field.id}
-                className="flex items-center justify-between  p-2 rounded-lg"
+                className="flex items-center bg-base-100 justify-between  p-2 rounded-lg shadow-md"
               >
-                <h1 className="font-medium">{field.name}</h1>
+                <h1 className="font-medium text-lg">{field.name}</h1>
                 <button
                   type="button"
-                  className="btn btn-ghost btn-xs btn-circle"
+                  className="btn btn-error"
                   onClick={() => primaryRemove(index)}
                 >
                   ✕
