@@ -12,7 +12,7 @@ import ErrorMessage from "./ErrorMessage";
 function GeneralInfo({ onNext }) {
   const dispatch = useDispatch();
   const existingForm = useSelector((s) => s.productForm);
-  console.log("data: ", existingForm);
+  //console.log("data: ", existingForm);
   const {
     register,
     control,
