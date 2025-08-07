@@ -17,7 +17,7 @@ function App() {
           <Route path="/products/add" element={<MainProductForm />} />
         </Route>
       </Routes>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
     </Router>
   );
 }

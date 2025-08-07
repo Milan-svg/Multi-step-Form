@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFieldArray, useForm } from "react-hook-form";
 import { replaceField } from "./productFormSlice";
+import ErrorMessage from "./ErrorMessage";
 function FAQ({ onNext }) {
   const dispatch = useDispatch();
   const existingForm = useSelector((s) => s.productForm);
@@ -12,6 +13,7 @@ function FAQ({ onNext }) {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
+    mode: "onChange",
     defaultValues: {
       faqs: existingForm.faqs,
       additionalProductTitle: existingForm.additionalProductTitle,
@@ -74,8 +76,17 @@ function FAQ({ onNext }) {
                   placeholder="Enter Question"
                   {...register(`faqs.${index}.question`, {
                     required: "Field is Required",
+                    minLength: {
+                      value: 3,
+                      message: "Field must be of at least 3 characters",
+                    },
                   })}
                 />
+                {errors.faqs?.[index]?.question && (
+                  <p className="text-error text-sm mt-1">
+                    {errors.faqs[index].question.message}
+                  </p>
+                )}
               </label>
               <label className="floating-label">
                 <span>Answer</span>
@@ -85,8 +96,17 @@ function FAQ({ onNext }) {
                   placeholder="Enter Answer"
                   {...register(`faqs.${index}.answer`, {
                     required: "Field is Required",
+                    minLength: {
+                      value: 3,
+                      message: "Field must be of at least 3 characters",
+                    },
                   })}
                 />
+                {errors.faqs?.[index]?.answer && (
+                  <p className="text-error text-sm mt-1">
+                    {errors.faqs[index].answer.message}
+                  </p>
+                )}
               </label>
               {faqFields.length > 1 && (
                 <button
@@ -117,8 +137,17 @@ function FAQ({ onNext }) {
               placeholder="Enter Title"
               {...register("additionalProductTitle", {
                 required: "Field is Required",
+                minLength: {
+                  value: 3,
+                  message: "Field be of at least 3 characters",
+                },
+                maxLength: {
+                  value: 100,
+                  message: "Field can not contain more than 100 characters",
+                },
               })}
             />
+            <ErrorMessage errors={errors} fieldName="additionalProductTitle" />
           </label>
           {additionalProductsFields.map((field, index) => (
             <div key={field.id} className="flex space-x-4 items-center">
@@ -130,8 +159,17 @@ function FAQ({ onNext }) {
                   placeholder="Add a Product"
                   {...register(`additionalProducts.${index}`, {
                     required: "Field is Required",
+                    minLength: {
+                      value: 3,
+                      message: "Field must be of at least 3 characters",
+                    },
                   })}
                 />
+                {errors.additionalProducts?.[index] && (
+                  <p className="text-error text-sm mt-1">
+                    {errors.additionalProducts[index].message}
+                  </p>
+                )}
               </label>
               {additionalProductsFields.length > 1 && (
                 <button

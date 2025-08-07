@@ -3,6 +3,7 @@ import { set, useFieldArray, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { replaceField } from "./productFormSlice";
 import { ArrayFieldInput } from "../arrayFieldInput";
+import ErrorMessage from "./ErrorMessage";
 const ingredientOptions = [
   { name: "Bhringraj", image: "/images/bhringraj.png" },
   { name: "Sariva", image: "/images/sariva.png" },
@@ -20,6 +21,7 @@ function Properties({ onNext }) {
     watch,
     formState: { errors, isValid },
   } = useForm({
+    mode: "onChange",
     defaultValues: {
       dosage: existingForm.dosage,
       usage: existingForm.usage,
@@ -119,6 +121,7 @@ function Properties({ onNext }) {
           entryName="dosage"
           arrayAppend={dosageAppend}
           arrayRemove={dosageRemove}
+          errors={errors}
         />
 
         <fieldset className="space-y-4">
@@ -133,8 +136,17 @@ function Properties({ onNext }) {
                   placeholder="Enter Usage"
                   {...register(`usage.${index}.field1`, {
                     required: "Field is Required",
+                    minLength: {
+                      value: 3,
+                      message: "Field must be of at least 3 characters",
+                    },
                   })}
                 />
+                {errors.usage?.[index]?.field1 && (
+                  <p className="text-error text-sm mt-1">
+                    {errors.usage[index].field1.message}
+                  </p>
+                )}
               </label>
               <label className="floating-label">
                 <span>Enter Usage</span>
@@ -144,8 +156,17 @@ function Properties({ onNext }) {
                   placeholder="Enter Usage"
                   {...register(`usage.${index}.field2`, {
                     required: "Field is Required",
+                    minLength: {
+                      value: 3,
+                      message: "Field must be of at least 3 characters",
+                    },
                   })}
                 />
+                {errors.usage?.[index]?.field2 && (
+                  <p className="text-error text-sm mt-1">
+                    {errors.usage[index].field2.message}
+                  </p>
+                )}
               </label>
               {usageFields.length > 1 && (
                 <button
@@ -225,6 +246,7 @@ function Properties({ onNext }) {
           entryName="duration"
           arrayAppend={durationAppend}
           arrayRemove={durationRemove}
+          errors={errors}
         />
         <button
           className="btn btn-success self-start"

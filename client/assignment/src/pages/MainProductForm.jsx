@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   resetImages,
   resetForm,
+  setStep,
 } from "../components/productForm/productFormSlice";
 import toast from "react-hot-toast";
 
@@ -37,7 +38,7 @@ const Steps = ({ currentStep }) => {
 
 function MainProductForm() {
   const dispatch = useDispatch();
-  const [step, setStep] = useState(1);
+  const step = useSelector((s) => s.productForm.step);
   // here i clear blob image urls from redux state on hard refresh
   useEffect(() => {
     if (performance.navigation.type === 1) {
@@ -61,12 +62,12 @@ function MainProductForm() {
         return <GeneralInfo onNext={handleNext} />;
     }
   };
-  const handleNext = () => setStep((prev) => prev + 1);
-  const handleBack = () => setStep((prev) => prev - 1);
+  const handleNext = () => dispatch(setStep(step + 1));
+  const handleBack = () => dispatch(setStep(step - 1));
   const handleSubmit = () => {
     console.log("submitted");
     dispatch(resetForm());
-    setStep(1);
+    dispatch(setStep(1));
     toast.success("Product Added!");
   };
   return (

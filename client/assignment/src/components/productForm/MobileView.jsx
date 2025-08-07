@@ -8,11 +8,26 @@ function MobileView({ existingForm, handleSubmit }) {
         <div className="mockup-phone-display p-4 overflow-y-auto space-y-4 flex-1">
           {/* product image */}
           <div className="justify-center">
-            <img
+            <div className="carousel w-full">
+              {existingForm.images?.map((image, index) => (
+                <div
+                  key={index}
+                  id={`item${index + 1}`}
+                  className="carousel-item w-full"
+                >
+                  <img
+                    src={image}
+                    alt={`Slide ${index + 1}`}
+                    className="w-full max-w-[600px] object-contain rounded-lg shadow-xl"
+                  />
+                </div>
+              ))}
+            </div>
+            {/* <img
               src="/images/sample.jpg"
               alt="productImage"
               className="w-full max-w-[400px] object-contain rounded-lg shadow-xl"
-            />
+            /> */}
           </div>
           {/* product details */}
           <h1 className="text-lg font-bold">
@@ -28,10 +43,10 @@ function MobileView({ existingForm, handleSubmit }) {
                 key={index}
                 className="card bg-base-300 border-gray-800 p-4 shadow-lg space-y-1"
               >
-                <h1>{price.weight} GM</h1>
-                <h1>{price.duration} Month</h1>
-                <h1>{price.quantity} Jar</h1>
-                <h1>{price.price} Rs</h1>
+                <h1 className="text-lg font-bold">{price.weight} GM</h1>
+                <h1 className="text-lg font-bold">{price.duration} Month</h1>
+                <h1 className="text-lg font-bold">{price.quantity} Jar</h1>
+                <h1 className="text-lg font-bold">{price.price} Rs</h1>
               </div>
             ))}
           </div>
@@ -100,7 +115,11 @@ function MobileView({ existingForm, handleSubmit }) {
           {/* Duration */}
           <div className="space-y-4">
             <h1 className="text-lg font-bold">Duration</h1>
-            <h1 className="text-md font-semibold">{existingForm.duration}</h1>
+            {existingForm.duration.map((d, index) => (
+              <h1 key={index} className="text-md font-semibold">
+                {d}
+              </h1>
+            ))}
           </div>
           <div className="w-full flex justify-center mt-4">
             <button

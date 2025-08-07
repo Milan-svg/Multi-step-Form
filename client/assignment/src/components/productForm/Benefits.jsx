@@ -13,6 +13,7 @@ function Benefits({ onNext }) {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
+    mode: "onChange",
     defaultValues: {
       primaryBenefits:
         Array.isArray(existingForm.primaryBenefits) &&
@@ -85,6 +86,7 @@ function Benefits({ onNext }) {
           name="Primary Benefits"
           arrayAppend={primaryAppend}
           arrayRemove={primaryRemove}
+          errors={errors}
         />
 
         <ArrayFieldInput
@@ -94,6 +96,7 @@ function Benefits({ onNext }) {
           name="Secondary Benefits"
           arrayAppend={secondaryAppend}
           arrayRemove={secondaryRemove}
+          errors={errors}
         />
         <button
           type="submit"

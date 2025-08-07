@@ -7,7 +7,7 @@ function DesktopView({ existingForm, handleSubmit }) {
         {/* product image */}
         <div className="w-full lg:w-1/2 ">
           <div className="carousel w-full">
-            {existingForm.images.map((image, index) => (
+            {existingForm.images?.map((image, index) => (
               <div
                 key={index}
                 id={`item${index + 1}`}
@@ -109,7 +109,11 @@ function DesktopView({ existingForm, handleSubmit }) {
 
           {/* Duration */}
           <h1 className="text-4xl font-bold">Duration</h1>
-          <h1 className="text-2xl font-semibold">{existingForm.duration}</h1>
+          {existingForm.duration.map((d, index) => (
+            <h1 key={index} className="text-2xl font-semibold">
+              {d}
+            </h1>
+          ))}
         </div>
       </div>
       <button

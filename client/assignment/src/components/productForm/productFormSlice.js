@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  step: 1,
   name: "",
   subtitle: "",
   description: "",
@@ -21,6 +22,9 @@ const productFormSlice = createSlice({
   name: "productForm",
   initialState,
   reducers: {
+    setStep: (state, action) => {
+      state.step = action.payload;
+    },
     setField: (state, action) => {
       state[action.payload.field] = action.payload.value;
     },
@@ -66,6 +70,7 @@ const productFormSlice = createSlice({
   },
 });
 export const {
+  setStep,
   setField,
   setImages,
   resetImages,

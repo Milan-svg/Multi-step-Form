@@ -1,5 +1,5 @@
 import React from "react";
-
+import ErrorMessage from "./productForm/ErrorMessage";
 export function ArrayFieldInput({
   arrayField,
   name,
@@ -7,6 +7,7 @@ export function ArrayFieldInput({
   register,
   arrayRemove,
   arrayAppend,
+  errors,
 }) {
   return (
     <fieldset className="space-y-4">
@@ -21,8 +22,21 @@ export function ArrayFieldInput({
               placeholder={name}
               {...register(`${entryName}.${index}`, {
                 required: "Field is Required",
+                minLength: {
+                  value: 3,
+                  message: "Field must be of at least 3 characters",
+                },
+                maxLength: {
+                  value: 100,
+                  message: "Field can not contain more than 100 characters",
+                },
               })}
             />
+            {errors?.[entryName]?.[index] && (
+              <p className="text-error text-sm mt-1">
+                {errors[entryName][index]?.message}
+              </p>
+            )}
           </label>
           {arrayField.length > 1 && (
             <button
