@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { replaceField } from "./productFormSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useFieldArray, useForm } from "react-hook-form";
-import { ArrayFieldInput } from "../arrayFieldInput";
+import { ArrayFieldInput } from "../ArrayFieldInput";
 function Benefits({ onNext }) {
   const dispatch = useDispatch();
   const existingForm = useSelector((s) => s.productForm);

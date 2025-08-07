@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DesktopView from "./DesktopView";
 import MobileView from "./MobileView";
-import { resetForm } from "./productFormSlice";
 
 function Overview({ handleSubmit }) {
   const [view, setView] = useState("desktop");

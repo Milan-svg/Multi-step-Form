@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { set, useFieldArray, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { replaceField } from "./productFormSlice";
-import { ArrayFieldInput } from "../arrayFieldInput";
-import ErrorMessage from "./ErrorMessage";
+import { ArrayFieldInput } from "../ArrayFieldInput";
 const ingredientOptions = [
   { name: "Bhringraj", image: "/images/bhringraj.png" },
   { name: "Sariva", image: "/images/sariva.png" },
