@@ -32,6 +32,10 @@ const productFormSlice = createSlice({
         state.images.push(action.payload);
       }
     },
+    resetImages: (state) => {
+      state.images = [];
+    },
+
     addPricing: (state, action) => {
       state.pricing.push(action.payload);
     },
@@ -64,6 +68,7 @@ const productFormSlice = createSlice({
 export const {
   setField,
   setImages,
+  resetImages,
   addPricing,
   updatePricing,
   deletePricing,

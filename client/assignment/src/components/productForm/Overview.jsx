@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DesktopView from "./DesktopView";
 import MobileView from "./MobileView";
+import { resetForm } from "./productFormSlice";
 
-function Overview() {
+function Overview({ handleSubmit }) {
   const [view, setView] = useState("desktop");
   const existingForm = useSelector((s) => s.productForm);
-  console.log("form: ", existingForm);
+  //console.log("form: ", existingForm);
+  const dispatch = useDispatch();
+
   return (
     <div className="space-y-4">
       <div className="flex gap-4">
@@ -26,9 +29,9 @@ function Overview() {
         </button>
       </div>
       {view === "desktop" ? (
-        <DesktopView existingForm={existingForm} />
+        <DesktopView existingForm={existingForm} handleSubmit={handleSubmit} />
       ) : (
-        <MobileView existingForm={existingForm} />
+        <MobileView existingForm={existingForm} handleSubmit={handleSubmit} />
       )}
     </div>
   );

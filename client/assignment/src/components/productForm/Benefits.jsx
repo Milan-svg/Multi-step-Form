@@ -95,7 +95,11 @@ function Benefits({ onNext }) {
           arrayAppend={secondaryAppend}
           arrayRemove={secondaryRemove}
         />
-        <button type="submit" className="btn btn-success" disabled={!isValid}>
+        <button
+          type="submit"
+          className="btn btn-success self-start"
+          disabled={!isValid}
+        >
           Next
         </button>
       </form>

@@ -98,6 +98,12 @@ function Properties({ onNext }) {
     dispatch(replaceField({ field: "dosage", value: data.dosage }));
     dispatch(replaceField({ field: "usage", value: data.usage }));
     dispatch(replaceField({ field: "duration", value: data.duration }));
+    dispatch(
+      replaceField({
+        field: "primaryIngredients",
+        value: data.primaryIngredients,
+      })
+    );
     //console.log("igredients: ", data.primaryIngredients);
     //reset();
     onNext();
@@ -123,7 +129,7 @@ function Properties({ onNext }) {
                 <span>Enter Usage</span>
                 <input
                   type="text"
-                  className="input"
+                  className="input input-lg"
                   placeholder="Enter Usage"
                   {...register(`usage.${index}.field1`, {
                     required: "Field is Required",
@@ -134,7 +140,7 @@ function Properties({ onNext }) {
                 <span>Enter Usage</span>
                 <input
                   type="text"
-                  className="input"
+                  className="input input-lg"
                   placeholder="Enter Usage"
                   {...register(`usage.${index}.field2`, {
                     required: "Field is Required",
@@ -143,7 +149,7 @@ function Properties({ onNext }) {
               </label>
               {usageFields.length > 1 && (
                 <button
-                  className="btn btn-error"
+                  className="btn btn-error text-white"
                   onClick={() => usageRemove(index)}
                 >
                   X
@@ -187,7 +193,6 @@ function Properties({ onNext }) {
                         alt={ingredient.name}
                         className="w-8 h-8 object-cover rounded mr-2"
                       />
-
                       {ingredient.name}
                     </a>
                   </li>
@@ -204,7 +209,7 @@ function Properties({ onNext }) {
                 <h1 className="font-medium text-lg">{field.name}</h1>
                 <button
                   type="button"
-                  className="btn btn-error"
+                  className="btn btn-error text-white"
                   onClick={() => primaryRemove(index)}
                 >
                   ✕
@@ -221,7 +226,11 @@ function Properties({ onNext }) {
           arrayAppend={durationAppend}
           arrayRemove={durationRemove}
         />
-        <button className="btn btn-success" type="submit" disabled={!isValid}>
+        <button
+          className="btn btn-success self-start"
+          type="submit"
+          disabled={!isValid}
+        >
           Next
         </button>
       </form>

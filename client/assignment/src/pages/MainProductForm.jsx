@@ -1,9 +1,15 @@
-import React, { useState } from "react";
-import GeneralInfo from "./GeneralInfo";
-import Benefits from "./Benefits";
-import Properties from "./Properties";
-import FAQ from "./FAQ";
-import Overview from "./Overview";
+import React, { useEffect, useState } from "react";
+import GeneralInfo from "../components/productForm/GeneralInfo";
+import Benefits from "../components/productForm/Benefits";
+import Properties from "../components/productForm/Properties";
+import FAQ from "../components/productForm/FAQ";
+import Overview from "../components/productForm/Overview";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  resetImages,
+  resetForm,
+} from "../components/productForm/productFormSlice";
+import toast from "react-hot-toast";
 
 const Steps = ({ currentStep }) => {
   const steps = [
@@ -29,8 +35,15 @@ const Steps = ({ currentStep }) => {
   );
 };
 
-function MainForm() {
+function MainProductForm() {
+  const dispatch = useDispatch();
   const [step, setStep] = useState(1);
+  // here i clear blob image urls from redux state on hard refresh
+  useEffect(() => {
+    if (performance.navigation.type === 1) {
+      dispatch(resetImages());
+    }
+  }, []);
 
   const renderStep = () => {
     switch (step) {
@@ -43,13 +56,19 @@ function MainForm() {
       case 4:
         return <FAQ onNext={handleNext} />;
       case 5:
-        return <Overview onNext={handleNext} />;
+        return <Overview onNext={handleNext} handleSubmit={handleSubmit} />;
       default:
         return <GeneralInfo onNext={handleNext} />;
     }
   };
   const handleNext = () => setStep((prev) => prev + 1);
   const handleBack = () => setStep((prev) => prev - 1);
+  const handleSubmit = () => {
+    console.log("submitted");
+    dispatch(resetForm());
+    setStep(1);
+    toast.success("Product Added!");
+  };
   return (
     <div>
       <Steps currentStep={step} />
@@ -63,4 +82,4 @@ function MainForm() {
   );
 }
 
-export default MainForm;
+export default MainProductForm;

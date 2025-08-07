@@ -1,12 +1,9 @@
 import React from "react";
-
-// A simplified sidebar using DaisyUI's Menu component
+import { Link } from "react-router-dom";
 function Sidebar() {
   return (
-    <aside className="w-64 bg-white p-4 shadow-md">
-      <div className="mb-8 flex items-center gap-2">
-        <a>Menu</a>
-      </div>
+    <aside className="w-64 min-h-screen bg-white p-6 shadow-md flex flex-col">
+      <div className="mb-8 text-xl font-semibold text-center">Menu</div>
       <ul className="menu space-y-2 text-base">
         <li>
           <a>Dashboard</a>
@@ -14,9 +11,19 @@ function Sidebar() {
         <li>
           <a>Doctors</a>
         </li>
-        {/* Use 'active' class for the current page */}
         <li className="bg-green-100 rounded-lg text-green-700 font-semibold">
-          <a>Product</a>
+          <details open>
+            <summary>Product</summary>
+            <ul className="pl-4 mt-2 space-y-1 text-sm font-normal text-black">
+              <li>
+                <Link to="/products">Product List</Link>
+              </li>
+
+              <li>
+                <Link to="/products/add">Add a Product</Link>
+              </li>
+            </ul>
+          </details>
         </li>
         <li>
           <a>Patients</a>

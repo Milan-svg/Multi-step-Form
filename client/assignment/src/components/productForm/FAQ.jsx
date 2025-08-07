@@ -79,7 +79,7 @@ function FAQ({ onNext }) {
               </label>
               <label className="floating-label">
                 <span>Answer</span>
-                <textarea
+                <input
                   type="text"
                   className="input input-lg"
                   placeholder="Enter Answer"
@@ -91,7 +91,7 @@ function FAQ({ onNext }) {
               {faqFields.length > 1 && (
                 <button
                   type="button"
-                  className="btn btn-error"
+                  className="btn btn-error text-white"
                   onClick={() => faqRemove(index)}
                 >
                   X
@@ -136,7 +136,7 @@ function FAQ({ onNext }) {
               {additionalProductsFields.length > 1 && (
                 <button
                   type="button"
-                  className="btn btn-error"
+                  className="btn btn-error text-white"
                   onClick={() => additionalProductsRemove(index)}
                 >
                   X
@@ -152,7 +152,11 @@ function FAQ({ onNext }) {
             Add Another Item
           </button>
         </fieldset>
-        <button className="btn btn-success" type="submit" disabled={!isValid}>
+        <button
+          className="btn btn-success self-start"
+          type="submit"
+          disabled={!isValid}
+        >
           Next
         </button>
       </form>

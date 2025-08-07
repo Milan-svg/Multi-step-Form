@@ -27,7 +27,7 @@ export function ArrayFieldInput({
           {arrayField.length > 1 && (
             <button
               type="button"
-              className="btn btn-error"
+              className="btn btn-error text-white"
               onClick={() => arrayRemove(index)}
             >
               X

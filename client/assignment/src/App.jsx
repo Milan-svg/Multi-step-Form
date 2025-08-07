@@ -1,22 +1,24 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import MainForm from "./components/productForm/MainForm";
+import MainProductForm from "./pages/MainProductForm";
 import NavBar from "./components/NavBar";
-import Benefits from "./components/productForm/Benefits";
-import Properties from "./components/productForm/Properties";
-import FAQ from "./components/productForm/FAQ";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminLayout from "./components/AdminLayout";
-import Overview from "./components/productForm/Overview";
-
+import ProductList from "./pages/ProductList";
+import { Navigate } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
-    <>
+    <Router>
       <NavBar />
-      <AdminLayout>
-        <MainForm />
-      </AdminLayout>
-    </>
+      <Routes>
+        <Route path="/" element={<Navigate to="/products/add" />} />
+        <Route element={<AdminLayout />}>
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/products/add" element={<MainProductForm />} />
+        </Route>
+      </Routes>
+      <Toaster position="top-right" reverseOrder={false} />
+    </Router>
   );
 }
 

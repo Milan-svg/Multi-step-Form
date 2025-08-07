@@ -119,11 +119,11 @@ function GeneralInfo({ onNext }) {
               </label>
               {fields.length > 1 && (
                 <button
-                  className="btn"
+                  className="btn btn-error text-white"
                   type="button"
                   onClick={() => remove(index)}
                 >
-                  Remove
+                  X
                 </button>
               )}
             </div>
@@ -168,7 +168,11 @@ function GeneralInfo({ onNext }) {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-success" disabled={!isValid}>
+        <button
+          type="submit"
+          className="btn btn-success self-start"
+          disabled={!isValid}
+        >
           Next
         </button>
       </form>
