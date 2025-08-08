@@ -2,18 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 function Sidebar() {
   return (
-    <aside className="w-64 min-h-screen bg-white p-6 shadow-md flex flex-col">
-      <div className="mb-8 text-xl font-semibold text-center">Menu</div>
+    <aside className="w-64 min-h-screen bg-base-300 p-6 rounded-xl shadow-2xl flex flex-col ">
+      <div className="mb-8 text-2xl font-semibold text-center">Menu</div>
       <ul className="menu space-y-2 text-base">
         <li>
-          <a>Dashboard</a>
+          <a className="text-lg font-semibold">Dashboard</a>
         </li>
         <li>
-          <a>Doctors</a>
+          <a className="text-lg font-semibold">Doctors</a>
         </li>
-        <li className="bg-green-100 rounded-lg text-green-700 font-semibold">
+        <li className="bg-base-100 rounded-xl  font-semibold">
           <details open>
-            <summary>Product</summary>
+            <summary className="text-lg font-semibold">Product</summary>
             <ul className="pl-4 mt-2 space-y-1 text-sm font-normal text-black">
               <li>
                 <Link to="/products">Product List</Link>
@@ -26,19 +26,19 @@ function Sidebar() {
           </details>
         </li>
         <li>
-          <a>Patients</a>
+          <a className="text-lg font-semibold">Patients</a>
         </li>
         <li>
-          <a>Appointments</a>
+          <a className="text-lg font-semibold">Appointments</a>
         </li>
         <li>
-          <a>Specialities</a>
+          <a className="text-lg font-semibold">Specialities</a>
         </li>
         <li>
-          <a>Coupons</a>
+          <a className="text-lg font-semibold">Coupons</a>
         </li>
         <li>
-          <a>Concerns</a>
+          <a className="text-lg font-semibold">Concerns</a>
         </li>
       </ul>
     </aside>

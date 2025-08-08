@@ -21,7 +21,7 @@ const Steps = ({ currentStep }) => {
     "Overview",
   ];
   return (
-    <div className="mb-10">
+    <div className="mb-5">
       <ul className="steps w-full">
         {steps.map((label, index) => (
           <li
