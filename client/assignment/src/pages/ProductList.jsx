@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const productsFromApi = await fetch(
-  `${API_BASE_URL}/products/get-products`
+  `${API_BASE_URL}/api/v1/products/get-products`
 ).then((res) => res.json());
 //console.log("productsFromApi: ", productsFromApi); // used this to debug
 

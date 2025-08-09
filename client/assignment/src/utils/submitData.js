@@ -44,10 +44,13 @@ const submitData = async (reduxFormData) => {
   reduxFormData.imageFiles.forEach((file) => formData.append("images", file));
 
   try {
-    const response = await fetch(`${API_BASE_URL}/products/add-product`, {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      `${API_BASE_URL}/api/v1/products/add-product`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
     const data = await response.json();
     console.log("response from backend: ", data);
     if (!response.ok) {
