@@ -5,7 +5,7 @@ import {
   setField,
   setImages,
   replaceField,
-  resetForm,
+  setImageFiles,
 } from "./productFormSlice";
 import ErrorMessage from "./ErrorMessage";
 
@@ -35,7 +35,8 @@ function GeneralInfo({ onNext }) {
   const handleImages = (e) => {
     const files = Array.from(e.target.files);
     const previews = files.map((file) => URL.createObjectURL(file));
-    previews.forEach((p) => dispatch(setImages(p)));
+    dispatch(setImages(previews));
+    dispatch(setImageFiles(files));
     e.target.value = "";
   };
   const onSubmit = (data) => {

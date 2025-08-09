@@ -1,27 +1,35 @@
 import React, { useState } from "react";
 
-const products = [
-  {
-    id: 1,
-    name: "B Feral Gold Malt",
-    description:
-      "A versatile herb that enhances fertility and aids in treating insomnia. It has a calming effect on the nervous system and is known for its aromatic properties.",
-    status: "Active",
-  },
-  {
-    id: 2,
-    name: "Amrutam Amla Churna",
-    description:
-      "Amrutam's Amla Churna is a pure and authentic Ayurvedic recipe that is an excellent source of Vitamin C.",
-    status: "Inactive",
-  },
-];
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const productsFromApi = await fetch(
+  `${API_BASE_URL}/products/get-products`
+).then((res) => res.json());
+//console.log("productsFromApi: ", productsFromApi); // used this to debug
+
+const products = productsFromApi.data;
+
+// const products = [
+//   {
+//     id: 1,
+//     name: "B Feral Gold Malt",
+//     description:
+//       "A versatile herb that enhances fertility and aids in treating insomnia. It has a calming effect on the nervous system and is known for its aromatic properties.",
+//     status: "Active",
+//   },
+//   {
+//     id: 2,
+//     name: "Amrutam Amla Churna",
+//     description:
+//       "Amrutam's Amla Churna is a pure and authentic Ayurvedic recipe that is an excellent source of Vitamin C.",
+//     status: "Inactive",
+//   },
+// ];
 
 export default function ProductList() {
   const [expandedProduct, setExpandedProduct] = useState(null);
 
   const toggleExpand = (product) => {
-    setExpandedProduct(expandedProduct?.id === product.id ? null : product);
+    setExpandedProduct(expandedProduct?._id === product._id ? null : product);
   };
 
   return (
@@ -35,12 +43,12 @@ export default function ProductList() {
           <p className="text-gray-600 text-sm">{expandedProduct.description}</p>
           <span
             className={`px-3 py-1 text-md rounded-full self-start ${
-              expandedProduct.status === "Active"
+              expandedProduct.active === true
                 ? "bg-green-100 text-green-800 border border-green-900"
                 : "bg-red-100 text-red-800 border border-red-900"
             }`}
           >
-            {expandedProduct.status}
+            {expandedProduct.active ? "Active" : "Inactive"}
           </span>
         </div>
       )}
@@ -55,7 +63,7 @@ export default function ProductList() {
 
         {products.map((product) => (
           <div
-            key={product.id}
+            key={product._id}
             className="grid grid-cols-3 items-start p-3 border-t relative hover:bg-base-100 cursor-pointer"
             onClick={() => toggleExpand(product)}
           >
@@ -70,12 +78,12 @@ export default function ProductList() {
             <div className="text-sm">
               <span
                 className={`inline-block px-2 py-1 rounded-full ${
-                  product.status === "Active"
+                  product.active === true
                     ? "bg-green-100 text-green-800"
                     : "bg-red-100 text-red-800"
                 }`}
               >
-                {product.status}
+                {product.active ? "Active" : "Inactive"}
               </span>
             </div>
           </div>

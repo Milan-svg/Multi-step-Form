@@ -6,6 +6,7 @@ const initialState = {
   subtitle: "",
   description: "",
   images: [],
+  imageFiles: [],
   pricing: [{ weight: "", duration: "", quantity: "", price: "" }],
   primaryBenefits: [""],
   secondaryBenefits: [""],
@@ -36,8 +37,16 @@ const productFormSlice = createSlice({
         state.images.push(action.payload);
       }
     },
+    setImageFiles: (state, action) => {
+      if (Array.isArray(action.payload)) {
+        state.imageFiles = action.payload;
+      } else {
+        state.imageFiles.push(action.payload);
+      }
+    },
     resetImages: (state) => {
       state.images = [];
+      state.imageFiles = [];
     },
 
     addPricing: (state, action) => {
@@ -73,6 +82,7 @@ export const {
   setStep,
   setField,
   setImages,
+  setImageFiles,
   resetImages,
   addPricing,
   updatePricing,

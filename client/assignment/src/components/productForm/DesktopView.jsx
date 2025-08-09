@@ -94,7 +94,7 @@ function DesktopView({ existingForm, handleSubmit }) {
             <h1 className="text-4xl font-bold">Primary Ingredients</h1>
             <div className="grid grid-cols-2 md:grid-cols-2 p-4 gap-6">
               {existingForm.primaryIngredients.map((ingredient, index) => (
-                <div className="flex flex-col">
+                <div key={index} className="flex flex-col">
                   <img
                     className="rounded-xl shadow-lg"
                     src={ingredient.image}

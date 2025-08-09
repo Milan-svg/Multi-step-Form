@@ -11,6 +11,7 @@ import {
   setStep,
 } from "../components/productForm/productFormSlice";
 import toast from "react-hot-toast";
+import { submitData } from "../utils/submitData";
 
 const Steps = ({ currentStep }) => {
   const steps = [
@@ -39,6 +40,7 @@ const Steps = ({ currentStep }) => {
 function MainProductForm() {
   const dispatch = useDispatch();
   const step = useSelector((s) => s.productForm.step);
+  const formData = useSelector((s) => s.productForm);
   // here i clear blob image urls from redux state on hard refresh
   useEffect(() => {
     if (performance.navigation.type === 1) {
@@ -64,11 +66,18 @@ function MainProductForm() {
   };
   const handleNext = () => dispatch(setStep(step + 1));
   const handleBack = () => dispatch(setStep(step - 1));
-  const handleSubmit = () => {
-    console.log("submitted");
-    dispatch(resetForm());
-    dispatch(setStep(1));
-    toast.success("Product Added!");
+
+  const handleSubmit = async () => {
+    const result = await submitData(formData);
+    if (result.success) {
+      console.log("submitted");
+      dispatch(resetForm());
+      dispatch(setStep(1));
+      toast.success("Product Added!");
+    } else {
+      console.error("Failed to dispatch product to database:", result.error);
+      toast.error("Failed to add Product");
+    }
   };
   return (
     <div>

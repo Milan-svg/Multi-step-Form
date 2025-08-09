@@ -3,12 +3,23 @@ import { set, useFieldArray, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { replaceField } from "./productFormSlice";
 import { ArrayFieldInput } from "../ArrayFieldInput";
+
+// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// const ingredientsFromApi = await fetch(`${API_BASE_URL}/ingredients`).then(
+//   (res) => res.json()
+// );
+// console.log("ingredientsapi: ", ingredientsFromApi);
+// const ingredientOptions = ingredientsFromApi.map((ing) => ({
+//   ...ing,
+//   image: `${API_BASE_URL}/${ing.image}`,
+// }));
 const ingredientOptions = [
   { name: "Bhringraj", image: "/images/bhringraj.png" },
   { name: "Sariva", image: "/images/sariva.png" },
   { name: "Gudahal", image: "/images/gudahal.png" },
   { name: "Jatamansi", image: "/images/jatamansi.png" },
 ];
+
 function Properties({ onNext }) {
   const dispatch = useDispatch();
   const existingForm = useSelector((s) => s.productForm);
