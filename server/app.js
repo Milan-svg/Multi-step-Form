@@ -8,13 +8,18 @@ app.use(
     credentials: true,
   })
 );
-
 app.use(express.json({ limit: "32kb" }));
 
 app.use(express.urlencoded({ limit: "16kb" }));
 
-app.use(express.static("public")); //3. Middleware,  used to serve static files to the client (html/css/js/imgs/pdfs/etc) directly from the directory("public" in this case) instead of generating em via the server.
+app.use(express.static("public"));
 
-//app.use(cookieParser())
+//Routes import
+
+import productRoute from "./routes/product.routes.js";
+
+//routes declaration
+
+app.use("/api/v1/products", productRoute);
 
 export default app;

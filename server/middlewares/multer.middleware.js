@@ -9,5 +9,3 @@ const storage = multer.diskStorage({
 });
 
 export const upload = multer({ storage: storage });
-
-//isko as a middleware use krenge, we'll upload to our local `temp folder using multer

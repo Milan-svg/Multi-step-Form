@@ -212,6 +212,7 @@ function GeneralInfo({ onNext }) {
         <div>
           <input
             type="file"
+            name="images"
             multiple
             className="file-input file-input-bordered file-input-primary w-full max-w-xs"
             onChange={handleImages}

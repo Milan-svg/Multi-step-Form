@@ -38,4 +38,4 @@ const cloudinaryFileDelete = async (PublicId) => {
     console.log("error while deleting the image", error);
   }
 };
-export { cloudinaryUpload, cloudinaryThumbnail, cloudinaryFileDelete };
+export { cloudinaryUpload, cloudinaryFileDelete };
