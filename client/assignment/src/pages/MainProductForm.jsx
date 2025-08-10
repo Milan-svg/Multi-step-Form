@@ -22,7 +22,7 @@ const Steps = ({ currentStep }) => {
     "Overview",
   ];
   return (
-    <div className="mb-5">
+    <div className="mb-6 mt-[-40px]">
       <ul className="steps w-full">
         {steps.map((label, index) => (
           <li
