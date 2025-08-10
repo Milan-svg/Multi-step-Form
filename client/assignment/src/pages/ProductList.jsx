@@ -8,23 +8,6 @@ const productsFromApi = await fetch(
 
 const products = productsFromApi.data;
 
-// const products = [
-//   {
-//     id: 1,
-//     name: "B Feral Gold Malt",
-//     description:
-//       "A versatile herb that enhances fertility and aids in treating insomnia. It has a calming effect on the nervous system and is known for its aromatic properties.",
-//     status: "Active",
-//   },
-//   {
-//     id: 2,
-//     name: "Amrutam Amla Churna",
-//     description:
-//       "Amrutam's Amla Churna is a pure and authentic Ayurvedic recipe that is an excellent source of Vitamin C.",
-//     status: "Inactive",
-//   },
-// ];
-
 export default function ProductList() {
   const [expandedProduct, setExpandedProduct] = useState(null);
 
@@ -38,18 +21,29 @@ export default function ProductList() {
 
       {/* Expanded Product Details */}
       {expandedProduct && (
-        <div className=" card border border-gray-300 bg-base-100 rounded-lg p-4 mb-4 shadow-md space-y-2">
-          <h2 className="text-xl font-bold">{expandedProduct.name}</h2>
-          <p className="text-gray-600 text-sm">{expandedProduct.description}</p>
-          <span
-            className={`px-3 py-1 text-md rounded-full self-start ${
-              expandedProduct.active === true
-                ? "bg-green-100 text-green-800 border border-green-900"
-                : "bg-red-100 text-red-800 border border-red-900"
-            }`}
-          >
-            {expandedProduct.active ? "Active" : "Inactive"}
-          </span>
+        <div className="flex justify-between border border-gray-300 bg-base-100 rounded-lg p-4 mb-4 shadow-md">
+          <div className="flex-1  space-y-2">
+            <h2 className="text-xl font-bold">
+              Product :{" "}
+              <span className="font-bold text-lg">{expandedProduct.name}</span>
+            </h2>
+            <h1 className="text-lg font-bold">Description:</h1>
+            <p className="text-gray-800 text-md">
+              {expandedProduct.description}
+            </p>
+          </div>
+
+          <div className="self-start">
+            <span
+              className={`px-3 py-1 text-md rounded-full self-start ${
+                expandedProduct.active === true
+                  ? "bg-green-100 text-green-800 border border-green-900"
+                  : "bg-red-100 text-red-800 border border-red-900"
+              }`}
+            >
+              {expandedProduct.active ? "Active" : "Inactive"}
+            </span>
+          </div>
         </div>
       )}
 
